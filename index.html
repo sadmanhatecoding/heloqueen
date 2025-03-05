@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Day</title>
+    <style>
+        body {
+            background-color: lavender;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1, h2 {
+            color: #4b0082;
+            word-wrap: break-word;
+        }
+
+        .timer {
+            font-size: 2rem;
+            margin: 20px 0;
+            color: #ff69b4;
+        }
+
+        .flower {
+            width: 50px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+       #imagePopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    border: 5px solid #fff;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    width: 300px;  /* Set a fixed width */
+    height: auto;  /* Keep height auto so it scales with the width */
+    max-width: 80%;  /* Ensure it doesn't go beyond 80% of screen width */
+}
+
+
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        .animated-daisies {
+            position: absolute;
+            width: 150px;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1, h2 {
+                font-size: 1.5rem;
+            }
+
+            .timer {
+                font-size: 1.5rem;
+            }
+
+            .flower {
+                width: 40px;
+            }
+
+            .animated-daisies {
+                width: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1, h2 {
+                font-size: 1.2rem;
+            }
+
+            .timer {
+                font-size: 1.2rem;
+            }
+
+            .flower {
+                width: 35px;
+            }
+
+            .animated-daisies {
+                width: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>This is my first website code run from scratch</h1>
+    <h2>I will keep adding features and details to the website</h2>
+    <h2>Do you remember the day when you first told me those 3 magical words?</h2>
+
+    <div class="timer" id="timer"></div>
+
+    <img src="flower.png" class="flower" alt="Flower" onclick="showImage()">
+    
+    <div id="overlay" onclick="hideImage()"></div>
+    <img id="imagePopup" src="mnta.jpg" alt="Our Picture">
+
+    <!-- Animated daisies -->
+    <img src="daisy.png" class="animated-daisies" style="top: 100px; left: 100px;">
+    <img src="daisy.png" class="animated-daisies" style="top: 200px; left: 300px;">
+    <img src="daisy.png" class="animated-daisies" style="top: 400px; left: 500px;">
+
+    <script>
+        // Timer
+        const startDate = new Date("January 17, 2023 00:00:00").getTime();
+        const timerElement = document.getElementById("timer");
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = now - startDate;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            timerElement.innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Show/hide image
+        function showImage() {
+            document.getElementById('imagePopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hideImage() {
+            document.getElementById('imagePopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
